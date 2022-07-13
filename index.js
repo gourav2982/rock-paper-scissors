@@ -7,7 +7,7 @@ function computerSelection(){
         return "paper";
     }
     else{
-        return "scissor"
+        return "scissor";
     }
 }
 let rounds = prompt("Choose no. of rounds you wanna play.");

@@ -1,55 +1,106 @@
-function computerSelection(){
-    let rando = Math.floor(Math.random()*3);
-    if(rando===0){
-        return "rock";
-    }
-    else if(rando===1){
-        return "paper";
-    }
-    else{
-        return "scissor"
-    }
+function computerSelection() {
+  let rando = Math.floor(Math.random() * 3);
+  if (rando === 0) {
+    return 1;
+  } else if (rando === 1) {
+    return 2;
+  } else {
+    return 3;
+  }
 }
-let rounds = prompt("Choose no. of rounds you wanna play.");
-let scorePlayer = 0;
-let scoreComputer =0;
-for(let i=1;i<=rounds;i++){
-    let playerSelection = prompt("Pick rock , paper or scissor:");
-    let cs = computerSelection();
-    if(cs===playerSelection.toLowerCase()){
-        alert(`Round ${i} is draw.`);
-    }
-    else if(cs==="rock" && playerSelection.toLowerCase()==="paper"){
-        alert(`Round ${i} is your win.`);
-        scorePlayer++;
-    }
-    else if(cs==="paper" && playerSelection.toLowerCase()==="scissor"){
-        alert(`Round ${i} is your win.`);
-        scorePlayer++;
-    }
-    else if(cs==="scissor" && playerSelection.toLowerCase()==="rock"){
-        alert(`Round ${i} is your win.`);
-        scorePlayer++;
-    }
-    else if(playerSelection.toLowerCase()!=="rock" && playerSelection.toLowerCase()!=="paper" && playerSelection.toLowerCase()!=="scissor"){
-        alert("INVALID input. This round will start again.");
-        i--;
-    }
-    else{
-        alert(`Round ${i} is your loss.`);
-        scoreComputer++;
-    }
+let computerscore = 0;
+let playerscore = 0;
 
-}
-if(scoreComputer>scorePlayer){
-    alert("YOU LOSS");
-    alert(`Your score is ${scorePlayer} & Computer score is ${scoreComputer}`)
-}
-else if(scoreComputer<scorePlayer){
-    alert("YOU WIN");
-    alert(`Your score is ${scorePlayer} & Computer score is ${scoreComputer}`)
-}
-else{
-    alert("DRAW");
-    alert(`Your score is ${scorePlayer} & Computer score is ${scoreComputer}`)
-}
+let photo1 = document.querySelector(".photo1");
+let bPaper = document.querySelector(".b-paper");
+bPaper.addEventListener("click", function () {
+  if (playerscore < 5 && computerscore < 5) {
+    photo1?.setAttribute("src", "photo/paper.jpg");
+    let cselect = computerSelection();
+    if (cselect == 2) {
+      document.querySelector(".photo2")?.setAttribute("src", "photo/paper.jpg");
+    } else if (cselect == 1) {
+      document.querySelector(".photo2")?.setAttribute("src", "photo/rock.jpg");
+      playerscore++;
+    } else if (cselect == 3) {
+      document
+        .querySelector(".photo2")
+        ?.setAttribute("src", "photo/scissor.jpg");
+      computerscore++;
+    }
+    let pcounter = document.querySelector(".p-score-counter");
+    pcounter.innerHTML = `${playerscore}`;
+    let ccounter = document.querySelector(".c-score-counter");
+    ccounter.innerHTML = `${computerscore}`;
+    if(playerscore==5){
+      let annou = document.querySelector(".announcment")
+      annou.innerHTML = "YOU WIN!"
+    }
+    else if(computerscore==5){
+      let annou = document.querySelector(".announcment")
+      annou.innerHTML = "YOU LOSE!"
+    }
+  }
+});
+
+let bRock = document.querySelector(".b-rock");
+bRock.addEventListener("click", function () {
+  if (playerscore < 5 && computerscore < 5) {
+    photo1?.setAttribute("src", "photo/rock.jpg");
+    let cselect = computerSelection();
+    if (cselect == 2) {
+      document.querySelector(".photo2")?.setAttribute("src", "photo/paper.jpg");
+      computerscore++;
+    } else if (cselect == 1) {
+      document.querySelector(".photo2")?.setAttribute("src", "photo/rock.jpg");
+    } else if (cselect == 3) {
+      document
+        .querySelector(".photo2")
+        ?.setAttribute("src", "photo/scissor.jpg");
+      playerscore++;
+    }
+    let pcounter = document.querySelector(".p-score-counter");
+    pcounter.innerHTML = `${playerscore}`;
+    let ccounter = document.querySelector(".c-score-counter");
+    ccounter.innerHTML = `${computerscore}`;
+    if(playerscore==5){
+      let annou = document.querySelector(".announcment")
+      annou.innerHTML = "YOU WIN!"
+    }
+    else if(computerscore==5){
+      let annou = document.querySelector(".announcment")
+      annou.innerHTML = "YOU LOSE!"
+    }
+  }
+});
+
+let bScissor = document.querySelector(".b-scissor");
+bScissor.addEventListener("click", function () {
+  if (playerscore < 5 && computerscore < 5) {
+    photo1?.setAttribute("src", "photo/scissor.jpg");
+    let cselect = computerSelection();
+    if (cselect == 2) {
+      document.querySelector(".photo2")?.setAttribute("src", "photo/paper.jpg");
+      playerscore++;
+    } else if (cselect == 1) {
+      document.querySelector(".photo2")?.setAttribute("src", "photo/rock.jpg");
+      computerscore++;
+    } else if (cselect == 3) {
+      document
+        .querySelector(".photo2")
+        ?.setAttribute("src", "photo/scissor.jpg");
+    }
+    let pcounter = document.querySelector(".p-score-counter");
+    pcounter.innerHTML = `${playerscore}`;
+    let ccounter = document.querySelector(".c-score-counter");
+    ccounter.innerHTML = `${computerscore}`;
+    if(playerscore==5){
+      let annou = document.querySelector(".announcment")
+      annou.innerHTML = "YOU WIN!"
+    }
+    else if(computerscore==5){
+      let annou = document.querySelector(".announcment")
+      annou.innerHTML = "YOU LOSE!"
+    }
+  }
+});
